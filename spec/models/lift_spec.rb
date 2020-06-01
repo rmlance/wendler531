@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Lift, type: :model do
-  let!(:user) { Factorybot.create(:user) }
-  let!(:bench_press) { Lift.create(name: "Bench Press", user_id: user) }
+  let!(:user1) { FactoryBot.create(:user) }
+  let!(:bench_press) { Lift.create(name: "Bench Press", user_id: user1.id) }
 
   it "should validate that a record exists" do
-    expect(bench_press).to exist
+    expect(Lift.all.length).to eq(1)
   end
 
   it "should allow a record to persist if all info is valid" do
-    good_record = Lift.create(name: "Back Squat", user_id: user)
+    good_record = Lift.create(name: "Back Squat", user_id: user1.id)
     expect(good_record).to be_valid
   end
 
