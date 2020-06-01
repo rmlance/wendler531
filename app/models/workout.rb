@@ -1,5 +1,5 @@
 class Workout < ApplicationRecord
-  validates :format, :timestamps, presence: true
+  validates :format, presence: true
 
   has_many :setts
   belongs_to :lift
