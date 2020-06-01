@@ -4,7 +4,7 @@ class CreateSetts < ActiveRecord::Migration[5.2]
       t.integer :reps, null: false
       t.integer :weight, null: false
       t.integer :projected_1rm
-      t.timestamps
+      t.timestamps null: false
 
       t.belongs_to :workout
     end
