@@ -19,7 +19,7 @@ RSpec.describe Api::V1::LiftsController, type: :controller do
 
       response_body = JSON.parse(response.body)
 
-      expect(response_body[0].length).to eq 2
+      expect(response_body[0].length).to eq 3
 
       expect(response_body[0]["id"]).to eq lift.id
       expect(response_body[0]["name"]).to eq lift.name
