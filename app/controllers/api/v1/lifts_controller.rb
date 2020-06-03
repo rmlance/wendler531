@@ -4,4 +4,5 @@ class Api::V1::LiftsController < ApplicationController
     lifts = Lift.all
     render json: lifts
   end
+  
 end
