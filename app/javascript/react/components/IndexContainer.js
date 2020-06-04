@@ -26,59 +26,42 @@ const IndexContainer = props => {
     .catch(error => console.log(`Error in fetch: ${error}`))
   }, [])
 
+  // Set headers, determine length of maximum data points
   let headers = ["Date"]
   let i = 0
-// Set headers, determine length of maximum data points
   liftData.forEach(item => {
     headers.push(item.name)
     if (item.workouts.length > i) {
       i = item.workouts.length
     }
   })
+
   let n = 0
   let data = [headers]
   while (n < i) {
     liftData.forEach(item => {
-      let dataPoint = []
-      if (item.workouts[n] && item.name == "Bench Press") {
-        dataPoint.push(
-          item.workouts[n].created_at,
-          item.workouts[n].projected_1rm,
-          null,
-          null,
-          null
-        )
-      } else if (item.workouts[n] && item.name == "Back Squat") {
-        dataPoint.push(
-          item.workouts[n].created_at,
-          null,
-          item.workouts[n].projected_1rm,
-          null,
-          null
-        )
-      } else if (item.workouts[n] && item.name == "Overhead Press") {
-        dataPoint.push(
-          item.workouts[n].created_at,
-          null,
-          null,
-          item.workouts[n].projected_1rm,
-          null
-        )
-      } else if (item.workouts[n] && item.name == "Deadlift") {
-        dataPoint.push(
-          item.workouts[n].created_at,
-          null,
-          null,
-          null,
-          item.workouts[n].projected_1rm
-        )
-      }
-      if (dataPoint.length > 0) {
+      if (item.workouts[n]) {
+        let dataPoint = [item.workouts[n].created_at.slice(0, 10), null, null, null, null]
+        switch (item.name) {
+          case "Bench Press":
+            dataPoint[1] = item.workouts[n].projected_1rm
+            break;
+          case "Back Squat":
+            dataPoint[2] = item.workouts[n].projected_1rm
+          break;
+        case "Overhead Press":
+            dataPoint[3] = item.workouts[n].projected_1rm
+          break;
+        case "Deadlift":
+          dataPoint[4] = item.workouts[n].projected_1rm
+          break;
+        }
         data.push(dataPoint)
       }
     })
     n++
   }
+  console.log(data);
 
   const liftBlocks = liftData.map(lift => {
     return (
@@ -95,7 +78,14 @@ const IndexContainer = props => {
     title: "Projected One-Rep Max Progrssion",
     legend: { position: "bottom" },
     chartArea: {left:40, top: 50, right: 20},
-    interpolateNulls: true
+    interpolateNulls: true,
+    vAxis: {
+      title: 'Weight (lbs)',
+      gridlines: {color: "#C6C6C6", count: 10}
+    },
+    hAxis: {
+      title: "Date"
+    }
   };
 
   return (
