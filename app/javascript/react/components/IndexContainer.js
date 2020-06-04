@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { render } from "react-dom";
 import { Chart } from "react-google-charts";
+import LiftBlock from './LiftBlock'
 
 const IndexContainer = props => {
   const [liftData, setLiftData] = useState([])
@@ -79,23 +80,41 @@ const IndexContainer = props => {
     n++
   }
 
+  const liftBlocks = liftData.map(lift => {
+    return (
+      <div className="callout medium-3" key={lift.id}>
+        <LiftBlock
+          name={lift.name}
+          projected_1rm={lift.workouts[lift.workouts.length -1].projected_1rm}
+        />
+      </div>
+    )
+  })
+
   const options = {
     title: "Projected One-Rep Max Progrssion",
-    curveType: "function",
     legend: { position: "bottom" },
+    chartArea: {left:40, top: 50, right: 20},
     interpolateNulls: true
   };
 
   return (
-    <div>
-      <Chart
-        chartType="LineChart"
-        data={data}
-        options={options}
-        width="100%"
-        height="400px"
-        legendToggle
-      />
+    <div className="grid-container grid-x">
+      <div className="cell medium-5">
+        <Chart
+          chartType="LineChart"
+          data={data}
+          options={options}
+          width="100%"
+          height="400px"
+          legendToggle
+        />
+      </div>
+      <div className="cell medium-7">
+        <div className="grid-container grid-x">
+          {liftBlocks}
+        </div>
+      </div>
     </div>
   )
 }
