@@ -61,11 +61,10 @@ const IndexContainer = props => {
     })
     n++
   }
-  console.log(data);
 
   const liftBlocks = liftData.map(lift => {
     return (
-      <div className="callout medium-3" key={lift.id}>
+      <div className="callout medium-3 small-6" key={lift.id}>
         <LiftBlock
           name={lift.name}
           projected_1rm={lift.workouts[lift.workouts.length -1].projected_1rm}
@@ -90,7 +89,7 @@ const IndexContainer = props => {
 
   return (
     <div className="grid-container grid-x">
-      <div className="cell medium-5">
+      <div className="cell medium-5 small-12">
         <Chart
           chartType="LineChart"
           data={data}
@@ -100,7 +99,7 @@ const IndexContainer = props => {
           legendToggle
         />
       </div>
-      <div className="cell medium-7">
+      <div className="cell medium-7 small-12">
         <div className="grid-container grid-x">
           {liftBlocks}
         </div>

@@ -2,9 +2,9 @@ import React from 'react'
 
 const LiftBlock = props => {
   return (
-    <div className="">
-      <p>{props.projected_1rm}</p>
-      {props.name}
+    <div className="text-center">
+      <h1>{props.projected_1rm}</h1>
+      <p>{props.name}</p>
     </div>
   )
 }
