@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_160623) do
 
   create_table "lifts", force: :cascade do |t|
     t.string "name", null: false
-    t.string "initial_1rm", null: false
+    t.integer "initial_1rm", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
