@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Workout, type: :model do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:lift) { Lift.create(name: "Bench Press", user_id: user.id) }
+  let!(:lift) { Lift.create(name: "Bench Press", initial_1rm: 225, user_id: user.id) }
   let!(:workout) { Workout.create(format: "5-3-1", projected_1rm: 225, lift_id: lift.id) }
 
   describe "workouts" do
