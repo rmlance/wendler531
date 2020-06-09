@@ -40,19 +40,19 @@ const IndexContainer = props => {
   let data = [headers]
   while (n < i) {
     liftData.forEach(item => {
-      if (item.workouts[n]) {
+      if (item.workouts[n] && item.workouts[n].completed == true) {
         let dataPoint = [item.workouts[n].created_at.slice(0, 10), null, null, null, null]
         switch (item.name) {
-          case "Bench Press":
+          case "Back Squat":
             dataPoint[1] = item.workouts[n].projected_1rm
             break;
-          case "Back Squat":
+          case "Bench Press":
             dataPoint[2] = item.workouts[n].projected_1rm
           break;
-        case "Overhead Press":
+        case "Deadlift":
             dataPoint[3] = item.workouts[n].projected_1rm
           break;
-        case "Deadlift":
+        case "Overhead Press":
           dataPoint[4] = item.workouts[n].projected_1rm
           break;
         }
@@ -61,6 +61,7 @@ const IndexContainer = props => {
     })
     n++
   }
+  console.log(data);
 
   const liftBlocks = liftData.map(lift => {
     return (
