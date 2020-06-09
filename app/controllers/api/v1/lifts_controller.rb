@@ -8,7 +8,11 @@ skip_before_action :verify_authenticity_token
 
   def create
     new_weight_array = [params["squat"], params["bench"], params["deadlift"], params["press"]]
-    ProgressionBuilder.new(new_weight_array).build_progression
+    if Lift.all.empty?
+      ProgressionBuilder.new(new_weight_array).build_progression
+    else
+      ProgressionBuilder.new(new_weight_array).build_workouts
+    end
     lifts = Lift.all
     render json:lifts
   end

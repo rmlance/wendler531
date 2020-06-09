@@ -29,9 +29,9 @@ class ProgressionBuilder
         Workout.create(format: "Initial Data", projected_1rm: lift.initial_1rm, completed: true, lift_id: lift.id)
       end
     end
-    all_lifts.each do |lift|
+    all_lifts.each_with_index do |lift, index|
       workout_formats.each do |format|
-        Workout.create(format: format, projected_1rm: lift.initial_1rm, lift_id: lift.id)
+        Workout.create(format: format, projected_1rm: @new_weight_array[index].to_i, lift_id: lift.id)
       end
     end
     build_sets()
