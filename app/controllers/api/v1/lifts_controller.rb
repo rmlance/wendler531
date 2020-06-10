@@ -23,8 +23,8 @@ skip_before_action :verify_authenticity_token
 
   def update
     associated_lift = Lift.find(params[:id])
-    weight_updates = [params["set1"], params["set2"], params["set3"]]
-    WorkoutComplete.new(associated_lift, weight_updates).make_updates
+    set_updates = [params["set1"], params["set2"], params["set3"], params["reps"]]
+    WorkoutComplete.new(associated_lift, set_updates).make_updates
     render json: associated_lift
   end
 

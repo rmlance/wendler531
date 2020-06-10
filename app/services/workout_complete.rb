@@ -1,19 +1,23 @@
 class WorkoutComplete
-  def initialize(associated_lift, weight_updates)
+  def initialize(associated_lift, set_updates)
     @associated_lift = associated_lift
-    @weight_updates = weight_updates
+    @set_updates = set_updates
   end
 
   def make_updates
     todays_workout = @associated_lift.workouts.detect { |workout| workout.completed == false }
     todays_setts = todays_workout.setts[0..2]
     todays_setts.each_with_index do |set, index|
-      set.weight = @weight_updates[index]
-      set_new_1rm(set, @weight_updates[index])
+      set.weight = @set_updates[index]
+      if index == 2
+        set.weight = @set_updates[index]
+        set.reps = @set_updates[3]
+      end
+      set_new_1rm(set, @set_updates[index])
       set.save
     end
     todays_workout.completed = true
-    todays_workout.projected_1rm = set_new_1rm(todays_workout.setts[2], @weight_updates[2])
+    todays_workout.projected_1rm = set_new_1rm(todays_workout.setts[2], @set_updates[2])
     todays_workout.save
   end
 

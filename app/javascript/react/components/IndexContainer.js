@@ -61,7 +61,6 @@ const IndexContainer = props => {
     })
     n++
   }
-  console.log(data);
 
   const liftBlocks = liftData.map(lift => {
     return (

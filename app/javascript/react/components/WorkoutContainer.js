@@ -9,7 +9,8 @@ const WorkoutContainer = props => {
   const [editFormPayload, setEditFormPayload] = useState({
     set1: "",
     set2: "",
-    set3: ""
+    set3: "",
+    reps: ""
   })
   const [errors, setErrors] = useState({})
   const [redirect, setRedirect] = useState(false)
@@ -31,11 +32,12 @@ const WorkoutContainer = props => {
     .then(response => response.json())
     .then(parsedWorkoutData => {
       setLiftObject(parsedWorkoutData)
-      const todaysWorkout = parsedWorkoutData.workouts.filter(workout => workout.completed == false)[0]
+      var todaysWorkout = parsedWorkoutData.workouts.filter(workout => workout.completed == false)[0]
       setEditFormPayload({
         set1: todaysWorkout.setts[0].weight,
         set2: todaysWorkout.setts[1].weight,
-        set3: todaysWorkout.setts[2].weight
+        set3: todaysWorkout.setts[2].weight,
+        reps: todaysWorkout.setts[2].reps
       })
     })
     .catch(error => console.error(`Error in fetch: $[errorMessage]`))
@@ -76,7 +78,7 @@ const WorkoutContainer = props => {
 
   const validForSubmission = () => {
     let submitErrors = {}
-    const requiredFields = ["set1", "set2", "set3"]
+    const requiredFields = ["set1", "set2", "set3", "reps"]
     requiredFields.forEach(field => {
       editFormPayload[field] = parseInt(editFormPayload[field])
       if (isNaN(editFormPayload[field])) {
@@ -98,7 +100,8 @@ const WorkoutContainer = props => {
       setEditFormPayload({
         set1: "",
         set2: "",
-        set3: ""
+        set3: "",
+        reps: ""
       })
       setErrors({})
     }
@@ -114,16 +117,20 @@ const WorkoutContainer = props => {
     <form onSubmit={handleSubmit}>
           <ErrorList errors={errors} />
 
-          <label className="set1">
-            Set 1
+          <div className="grid-x">
+            <h5 className="cell medium-1">Set 1</h5>
+            <h5 className="cell medium-1">5</h5>
             <input
+            className="cell medium-1"
               name="set1"
               id="set1"
               type="text"
               onChange={handleInputChange}
               value={editFormPayload.set1}
             />
-          </label>
+            <h5 className="cell medium-1">Completed</h5>
+            </div>
+
 
           <label className="set2">
             Set 2
@@ -144,6 +151,17 @@ const WorkoutContainer = props => {
               type="text"
               onChange={handleInputChange}
               value={editFormPayload.set3}
+            />
+          </label>
+
+          <label className="reps">
+            Reps
+            <input
+              name="reps"
+              id="reps"
+              type="text"
+              onChange={handleInputChange}
+              value={editFormPayload.reps}
             />
           </label>
 
