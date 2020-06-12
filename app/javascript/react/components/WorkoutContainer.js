@@ -128,7 +128,8 @@ const WorkoutContainer = props => {
               onChange={handleInputChange}
               value={editFormPayload.set1}
             />
-            <h5 className="cell medium-1">Completed</h5>
+            <h5 className="cell medium-9">Completed</h5>
+            <div className="cell">Previous Workout Data</div>
             </div>
 
 
