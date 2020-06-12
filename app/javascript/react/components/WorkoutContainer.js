@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import ErrorList from "./ErrorList"
+import WorkoutForm from './WorkoutForm'
 
 const WorkoutContainer = props => {
-  const [liftObject, setLiftObject] = useState({
-    workouts: []
-  })
+  const [liftObject, setLiftObject] = useState({})
   const [editFormPayload, setEditFormPayload] = useState({
     set1: "",
     set2: "",
     set3: "",
     reps: ""
   })
-  const [errors, setErrors] = useState({})
   const [redirect, setRedirect] = useState(false)
   const fetchId = props.match.params.id
 
@@ -43,13 +40,6 @@ const WorkoutContainer = props => {
     .catch(error => console.error(`Error in fetch: $[errorMessage]`))
   }, [])
 
-  const handleInputChange = event => {
-    setEditFormPayload({
-      ...editFormPayload,
-      [event.currentTarget.name]: event.currentTarget.value
-    })
-  }
-
   const completedWorkoutUpdate = (editFormPayload) =>{
     fetch(`/api/v1/lifts/${fetchId}`, {
       credentials: "same-origin",
@@ -76,35 +66,11 @@ const WorkoutContainer = props => {
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
-  const validForSubmission = () => {
-    let submitErrors = {}
-    const requiredFields = ["set1", "set2", "set3", "reps"]
-    requiredFields.forEach(field => {
-      editFormPayload[field] = parseInt(editFormPayload[field])
-      if (isNaN(editFormPayload[field])) {
-        submitErrors = {
-          ...submitErrors,
-          [field]: "must be an integer."
-        }
-      editFormPayload[field] = editFormPayload[field].toString()
-      }
+  const handleInputChange = event => {
+    setEditFormPayload({
+      ...editFormPayload,
+      [event.currentTarget.name]: event.currentTarget.value
     })
-    setErrors(submitErrors)
-    return _.isEmpty(submitErrors)
-  }
-
-  const handleSubmit = event => {
-    event.preventDefault()
-    if (validForSubmission()) {
-      completedWorkoutUpdate(editFormPayload)
-      setEditFormPayload({
-        set1: "",
-        set2: "",
-        set3: "",
-        reps: ""
-      })
-      setErrors({})
-    }
   }
 
   if (redirect) {
@@ -113,63 +79,13 @@ const WorkoutContainer = props => {
 
   return (
     <div className="grid-container">
-    <h1>{liftObject.name}</h1>
-    <form onSubmit={handleSubmit}>
-          <ErrorList errors={errors} />
-
-          <div className="grid-x">
-            <h5 className="cell medium-1">Set 1</h5>
-            <h5 className="cell medium-1">5</h5>
-            <input
-            className="cell medium-1"
-              name="set1"
-              id="set1"
-              type="text"
-              onChange={handleInputChange}
-              value={editFormPayload.set1}
-            />
-            <h5 className="cell medium-9">Completed</h5>
-            <div className="cell">Previous Workout Data</div>
-            </div>
-
-
-          <label className="set2">
-            Set 2
-            <input
-              name="set2"
-              id="set2"
-              type="text"
-              onChange={handleInputChange}
-              value={editFormPayload.set2}
-            />
-          </label>
-
-          <label className="set3">
-            Set 3
-            <input
-              name="set3"
-              id="set3"
-              type="text"
-              onChange={handleInputChange}
-              value={editFormPayload.set3}
-            />
-          </label>
-
-          <label className="reps">
-            Reps
-            <input
-              name="reps"
-              id="reps"
-              type="text"
-              onChange={handleInputChange}
-              value={editFormPayload.reps}
-            />
-          </label>
-
-        <div className="button-group">
-          <input className="button" type="submit" value="Workout Complete!" />
-        </div>
-        </form>
+      <h1>{liftObject.name}</h1>
+      <WorkoutForm
+        editFormPayload={editFormPayload}
+        setEditFormPayload={setEditFormPayload}
+        completedWorkoutUpdate={completedWorkoutUpdate}
+        handleInputChange={handleInputChange}
+      />
     </div>
   )
 }
