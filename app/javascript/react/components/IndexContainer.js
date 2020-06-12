@@ -61,7 +61,6 @@ const IndexContainer = props => {
     })
     n++
   }
-  console.log(data);
 
   const liftBlocks = liftData.map(lift => {
     return (
@@ -69,6 +68,7 @@ const IndexContainer = props => {
         <LiftBlock
           name={lift.name}
           projected_1rm={lift.workouts[lift.workouts.length -1].projected_1rm}
+          linkId={lift.id}
         />
       </div>
     )

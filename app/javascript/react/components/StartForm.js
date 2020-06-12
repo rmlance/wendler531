@@ -47,7 +47,7 @@ const StartForm = props => {
     }
   }
   return (
-    <div>
+    <div className="grid-container">
     <form onSubmit={handleSubmit}>
           <ErrorList errors={errors} />
 
@@ -58,7 +58,7 @@ const StartForm = props => {
               id="squat"
               type="text"
               onChange={handleInputChange}
-              value={newFormPayload.name}
+              value={newFormPayload.squat}
             />
           </label>
 
@@ -69,7 +69,7 @@ const StartForm = props => {
               id="bench"
               type="text"
               onChange={handleInputChange}
-              value={newFormPayload.name}
+              value={newFormPayload.bench}
             />
           </label>
 
@@ -80,7 +80,7 @@ const StartForm = props => {
               id="deadlift"
               type="text"
               onChange={handleInputChange}
-              value={newFormPayload.name}
+              value={newFormPayload.deadlift}
             />
           </label>
 
@@ -91,7 +91,7 @@ const StartForm = props => {
               id="press"
               type="text"
               onChange={handleInputChange}
-              value={newFormPayload.name}
+              value={newFormPayload.press}
             />
           </label>
 
