@@ -8,7 +8,9 @@ const WorkoutContainer = props => {
     set1: "",
     set2: "",
     set3: "",
-    reps: ""
+    reps1: "",
+    reps2: "",
+    reps3: ""
   })
   const [redirect, setRedirect] = useState(false)
   const fetchId = props.match.params.id
@@ -34,17 +36,25 @@ const WorkoutContainer = props => {
         set1: todaysWorkout.setts[0].weight,
         set2: todaysWorkout.setts[1].weight,
         set3: todaysWorkout.setts[2].weight,
-        reps: todaysWorkout.setts[2].reps
+        reps1: todaysWorkout.setts[0].reps,
+        reps2: todaysWorkout.setts[1].reps,
+        reps3: todaysWorkout.setts[2].reps
       })
     })
     .catch(error => console.error(`Error in fetch: $[errorMessage]`))
   }, [])
 
   const completedWorkoutUpdate = (editFormPayload) =>{
+    let functionalData = {
+      set1: editFormPayload["set1"],
+      set2: editFormPayload["set2"],
+      set3: editFormPayload["set3"],
+      reps: editFormPayload["reps3"]
+    }
     fetch(`/api/v1/lifts/${fetchId}`, {
       credentials: "same-origin",
       method: 'PATCH',
-      body: JSON.stringify(editFormPayload),
+      body: JSON.stringify(functionalData),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
