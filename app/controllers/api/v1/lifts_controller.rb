@@ -4,7 +4,7 @@ skip_before_action :verify_authenticity_token
 # before_action :authenticate_user
 
   def index
-    lifts = current_user.lifts.all
+    lifts = current_user.lifts
     render json: lifts
   end
 
