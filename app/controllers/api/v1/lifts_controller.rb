@@ -1,8 +1,10 @@
 class Api::V1::LiftsController < ApplicationController
 skip_before_action :verify_authenticity_token
+# before_action :authorize_user
+# before_action :authenticate_user
 
   def index
-    lifts = Lift.all
+    lifts = current_user.lifts.all
     render json: lifts
   end
 
@@ -12,12 +14,12 @@ skip_before_action :verify_authenticity_token
 
   def create
     new_weight_array = [params["squat"], params["bench"], params["deadlift"], params["press"]]
-    if Lift.all.empty?
-      ProgressionBuilder.new(new_weight_array).build_progression
+    if current_user.lifts.all.empty?
+      ProgressionBuilder.new(new_weight_array, current_user).build_progression
     else
-      ProgressionBuilder.new(new_weight_array).build_workouts
+      ProgressionBuilder.new(new_weight_array, current_user).build_workouts
     end
-    lifts = Lift.all
+    lifts = current_user.lifts.all
     render json:lifts
   end
 
@@ -28,4 +30,17 @@ skip_before_action :verify_authenticity_token
     render json: associated_lift
   end
 
+  protected
+
+  def authenticate_user
+    if !user_signed_in?
+      render json: { error: "You do not have access to this page, please ensure you are signed in."}
+    end
+  end
+
+  def authorize_user
+    if !current_user
+      render json: { error: "You do not have access to this action."}
+    end
+  end
 end

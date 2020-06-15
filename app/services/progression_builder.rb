@@ -1,7 +1,8 @@
 class ProgressionBuilder
 
-  def initialize(new_weight_array)
+  def initialize(new_weight_array, current_user)
     @new_weight_array = new_weight_array
+    @current_user = current_user
   end
 
   def build_progression
@@ -16,13 +17,13 @@ class ProgressionBuilder
       when 3
         lift = "Overhead Press"
       end
-      Lift.create(name: lift, initial_1rm: weight, user_id: 1)
+      Lift.create(name: lift, initial_1rm: weight, user_id: @current_user.id)
     end
     build_workouts()
   end
 
   def build_workouts
-    all_lifts = Lift.all
+    all_lifts = @current_user.lifts
     workout_formats = ["3x5", "3x3", "5-3-1", "Deload"]
     if first_time_user?()
       all_lifts.each do |lift|
@@ -70,7 +71,7 @@ class ProgressionBuilder
   end
 
   def first_time_user?
-    workout_data = Workout.all
+    workout_data = @current_user.lifts.first.workouts
     if workout_data.empty?
       return true
     else
