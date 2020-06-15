@@ -6,6 +6,7 @@ RSpec.describe Api::V1::LiftsController, type: :controller do
 
   describe "GET#index" do
     it "returns a sucessful response status and a content type of json" do
+      sign_in user
       get :index
 
       expect(response.status).to eq 200

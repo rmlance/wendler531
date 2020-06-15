@@ -14,7 +14,7 @@ const IndexContainer = props => {
       if (response.ok) {
         return response
       }else {
-        let errorMessage = `ERROR: ${response.status} (${response.statusText})`
+        let errorMessage = `biggg ERROR: ${response.status} (${response.statusText})`
         error = new Error(errorMessage)
         throw(error)
       }
@@ -26,7 +26,6 @@ const IndexContainer = props => {
     .catch(error => console.log(`Error in fetch: ${error}`))
   }, [])
 
-  // Set headers, determine length of maximum data points
   let headers = ["Date"]
   let i = 0
   liftData.forEach(item => {

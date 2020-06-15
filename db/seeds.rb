@@ -1,4 +1,4 @@
-user1 = User.create(email: "user@email.com", password: 123123)
+# user1 = User.create(email: "user@email.com", password: 123123)
 # bench = Lift.create(name: "Bench Press", user_id: user1.id)
 # squat = Lift.create(name: "Back Squat", user_id: user1.id)
 # press = Lift.create(name: "Overhead Press", user_id: user1.id)
