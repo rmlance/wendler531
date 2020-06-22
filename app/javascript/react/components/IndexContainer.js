@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { render } from "react-dom";
+import { Link } from 'react-router-dom'
 import { Chart } from "react-google-charts";
 import LiftBlock from './LiftBlock'
 
@@ -15,7 +16,7 @@ const IndexContainer = props => {
         return response
       }else {
         let errorMessage = `biggg ERROR: ${response.status} (${response.statusText})`
-        error = new Error(errorMessage)
+        let error = new Error(errorMessage)
         throw(error)
       }
     })
@@ -23,7 +24,7 @@ const IndexContainer = props => {
     .then((parsedLiftData) => {
       setLiftData(parsedLiftData)
     })
-    .catch(error => console.log(`Error in fetch: ${error}`))
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
   let headers = ["Date"]
@@ -104,6 +105,7 @@ const IndexContainer = props => {
           {liftBlocks}
         </div>
       </div>
+      <Link to={`/start`}>Build New Progression</Link>
     </div>
   )
 }

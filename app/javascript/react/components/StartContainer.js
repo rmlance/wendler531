@@ -21,7 +21,7 @@ const StartContainer = props => {
         return response
       }else {
         let errorMessage = `${response.status} (${response.statusTxt})`
-        error = new Error(errorMessage)
+        let error = new Error(errorMessage)
         throw(error)
       }
     })

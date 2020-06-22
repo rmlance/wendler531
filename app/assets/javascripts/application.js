@@ -16,3 +16,10 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(function(){
+   function removeFlashMessages() {
+     $('#flash-messages').remove();
+   }
+   setTimeout(removeFlashMessages, 5000);
+})
