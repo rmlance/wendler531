@@ -46,7 +46,6 @@ class ProgressionBuilder
         all_workouts << workout
       end
     end
-    binding.pry
     all_workouts.each do |workout|
       case workout.format
       when "3x5"
