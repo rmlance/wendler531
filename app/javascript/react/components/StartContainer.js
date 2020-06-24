@@ -7,9 +7,9 @@ const StartContainer = props => {
   const [redirect, setRedirect] = useState(false)
 
   const addNewProgression = (formPayload) => {
-    fetch('api/v1/lifts', {
+    fetch('/api/v1/lifts', {
       credentials: "same-origin",
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(formPayload),
       headers: {
         Accept: "application/json",
