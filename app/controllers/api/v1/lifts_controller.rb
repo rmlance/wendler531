@@ -1,6 +1,6 @@
 class Api::V1::LiftsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  # before_action :authenticate_user
+  before_action :authenticate_user
 
   def index
     lifts = current_user.lifts
@@ -19,7 +19,7 @@ class Api::V1::LiftsController < ApplicationController
       ProgressionBuilder.new(new_weight_array, current_user).build_workouts
     end
     lifts = current_user.lifts.all
-    render json:lifts
+    render json: lifts
   end
 
   def update
