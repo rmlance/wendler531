@@ -1,6 +1,6 @@
 class Api::V1::LiftsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
-  before_action :authenticate_user
+  skip_before_action :verify_authenticity_token, :authenticate_user
+  # before_action :authenticate_user
 
   def index
     lifts = current_user.lifts
@@ -33,7 +33,7 @@ class Api::V1::LiftsController < ApplicationController
 
   def authenticate_user
     if !user_signed_in?
-      flash[:notice] = "You do not have access to this action."
+      render json: { error: "You do not have access to this action."}
       redirect_to new_user_session_path
     end
   end
