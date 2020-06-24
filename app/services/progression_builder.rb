@@ -17,7 +17,7 @@ class ProgressionBuilder
       when 3
         lift = "Overhead Press"
       end
-      Lift.create(name: lift, initial_1rm: weight, user_id: @current_user.id)
+      Lift.create(name: lift, initial_1rm: weight.to_i, user_id: @current_user.id)
     end
     build_workouts()
   end
@@ -39,7 +39,14 @@ class ProgressionBuilder
   end
 
   def build_sets
-    all_workouts = Workout.all
+    all_lifts = @current_user.lifts
+    all_workouts = []
+    all_lifts.each do |lift|
+      lift.workouts.each do |workout|
+        all_workouts << workout
+      end
+    end
+    binding.pry
     all_workouts.each do |workout|
       case workout.format
       when "3x5"
