@@ -1,5 +1,5 @@
 class Api::V1::LiftsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   # before_action :authenticate_user
 
   def index
@@ -12,6 +12,8 @@ class Api::V1::LiftsController < ApplicationController
   end
 
   def create
+    puts "Current User:" + current_user
+    puts "Current User Id:" + session[:user_id]
     new_weight_array = [params["squat"], params["bench"], params["deadlift"], params["press"]]
     if current_user.lifts.all.empty?
       ProgressionBuilder.new(new_weight_array, current_user).build_progression

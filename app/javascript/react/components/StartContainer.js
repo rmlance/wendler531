@@ -12,7 +12,7 @@ const StartContainer = props => {
       method: 'POST',
       body: JSON.stringify(formPayload),
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json"
       }
     })
