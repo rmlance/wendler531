@@ -7,19 +7,19 @@ const StartContainer = props => {
   const [redirect, setRedirect] = useState(false)
 
   const addNewProgression = (formPayload) => {
-    fetch('/api/v1/lifts', {
+    fetch('/api/v1/lifts.json', {
       credentials: "same-origin",
       method: 'POST',
       body: JSON.stringify(formPayload),
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json"
       }
     })
     .then(response => {
       if (response.ok) {
         return response
-      }else {
+      } else {
         let errorMessage = `${response.status} (${response.statusTxt})`
         let error = new Error(errorMessage)
         throw(error)
