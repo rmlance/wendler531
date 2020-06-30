@@ -21,5 +21,5 @@ $(function(){
    function removeFlashMessages() {
      $('#flash-messages').remove();
    }
-   setTimeout(removeFlashMessages, 5000);
+   setTimeout(removeFlashMessages, 7000);
 })

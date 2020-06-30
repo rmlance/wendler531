@@ -36,7 +36,10 @@ const WorkoutForm = props => {
 
           <div className="grid-x callout">
             <div className="set-box medium-4 small-4">Set 1</div>
-            <div className="reps-box medium-3 small-3">{props.editFormPayload.reps1}</div>
+            <div className="reps-box medium-3 small-3">
+              <p>Reps</p>
+              {props.editFormPayload.reps1}
+            </div>
             <label className="weight-box medium-3 small-3">
               Weight
               <input
@@ -52,7 +55,10 @@ const WorkoutForm = props => {
 
           <div className="grid-x callout">
             <div className="set-box medium-4 small-4">Set 2</div>
-            <div className="reps-box medium-3 small-3">{props.editFormPayload.reps2}</div>
+            <div className="reps-box medium-3 small-3">
+              <p>Reps</p>
+              {props.editFormPayload.reps2}
+            </div>
             <label className="weight-box medium-3 small-3">
               Weight
                 <input

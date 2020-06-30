@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { render } from "react-dom";
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Chart } from "react-google-charts";
+import _ from 'lodash'
 import LiftBlock from './LiftBlock'
 
 const IndexContainer = props => {
   const [liftData, setLiftData] = useState([])
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
     fetch('api/v1/lifts', {
@@ -15,7 +17,7 @@ const IndexContainer = props => {
       if (response.ok) {
         return response
       }else {
-        let errorMessage = `biggg ERROR: ${response.status} (${response.statusText})`
+        let errorMessage = `You've hit an error: ${response.status} (${response.statusText})`
         let error = new Error(errorMessage)
         throw(error)
       }
@@ -23,9 +25,16 @@ const IndexContainer = props => {
     .then((response) => response.json())
     .then((parsedLiftData) => {
       setLiftData(parsedLiftData)
+      if (_.isEmpty(parsedLiftData)) {
+        setRedirect(true)
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
+
+  if (redirect) {
+    return <Redirect to={`/start`} />
+  }
 
   let headers = ["Date"]
   let i = 0
