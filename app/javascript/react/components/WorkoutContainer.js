@@ -89,7 +89,7 @@ const WorkoutContainer = props => {
 
   return (
     <div className="grid-container">
-      <h1>{liftObject.name}</h1>
+      <h3>{liftObject.name}</h3>
       <WorkoutForm
         editFormPayload={editFormPayload}
         setEditFormPayload={setEditFormPayload}

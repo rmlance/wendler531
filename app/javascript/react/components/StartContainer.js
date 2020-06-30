@@ -41,6 +41,10 @@ const StartContainer = props => {
 
   return (
     <div>
+    <div className="grid-container">
+      <h3>Let's start by collecting some data.</h3>
+      <p>For each of the lifts specified below, enter your estimated one-rep max.</p>
+    </div>
       <StartForm
         addNewProgression={addNewProgression}
       />
