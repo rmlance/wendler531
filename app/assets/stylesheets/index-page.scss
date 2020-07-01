@@ -1,0 +1,62 @@
+.lift-block {
+  background-image: linear-gradient(to bottom, #3d95bf, #73BDD3);
+  padding: 20px 5px 20px 5px;
+  margin: 10px 0px 0px 0px;
+  box-shadow:
+    inset 0 0 0 10px #1a2e38,
+    inset 0 0 0 12px white;
+}
+
+.tile-text {
+  color: white;
+  font-size: 56px;
+  font-weight: bold;
+}
+
+.start-workout-button {
+  background-color: #f55d3e;
+  width: 70%;
+  height: 80px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 40px;
+}
+
+.button:hover {
+  background-image: linear-gradient(#f55d3e, #D52D0B)
+}
+
+.build-new-progression {
+  background-color: #f55d3e;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.projected_1rm {
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.lift-name {
+  font-size: 17px;
+  color: white;
+  font-weight: bold;
+  background-color: #3686AB;
+  margin: 0px 7px 0px 7px;
+}
+
+.home-region{
+  padding: 20px 0px 20px 0px;
+  margin: 0px 0px 0px 0px;
+  background-color: #1a2e38;
+}
+
+.plot-display {
+  padding: 10px 10px 10px 10px;
+}
