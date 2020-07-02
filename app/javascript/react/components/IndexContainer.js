@@ -86,7 +86,11 @@ const IndexContainer = props => {
   const options = {
     title: "Projected One-Rep Max Progrssion",
     legend: { position: "bottom" },
-    chartArea: {left:40, top: 50, right: 20},
+    chartArea: {
+      left:40,
+      top: 50,
+      right: 20
+    },
     interpolateNulls: true,
     vAxis: {
       title: 'Weight (lbs)',
@@ -97,11 +101,14 @@ const IndexContainer = props => {
     }
   };
 
+  let loader = <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
   return (
-    <div className="grid-container grid-x home-region">
+    <div className="grid-container fluid grid-x home-region">
       <div className="cell medium-5 small-12 plot-display">
         <Chart
           chartType="LineChart"
+          loader={loader}
           data={data}
           options={options}
           width="100%"
