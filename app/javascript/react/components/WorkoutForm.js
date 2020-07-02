@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ErrorList from "./ErrorList"
+import PreviousWorkout from './PreviousWorkout'
 
 const WorkoutForm = props => {
   const [errors, setErrors] = useState({})
@@ -52,6 +53,10 @@ const WorkoutForm = props => {
             </label>
             <div className="set-box medium-2 small-2">Completed</div>
           </div>
+          <PreviousWorkout
+          previousWorkout={props.previousWorkout[0]}
+          />
+
 
           <div className="grid-x callout">
             <div className="set-box medium-4 small-4">Set 2</div>
@@ -71,6 +76,10 @@ const WorkoutForm = props => {
             </label>
             <div className="set-box medium-2 small-2">Completed</div>
           </div>
+
+          <PreviousWorkout
+            previousWorkout={props.previousWorkout[1]}
+          />
 
           <div className="grid-x callout">
             <div className="set-box medium-4 small-4">Set 3</div>
@@ -97,6 +106,10 @@ const WorkoutForm = props => {
             </label>
             <div className="set-box medium-2 small-2">Completed</div>
           </div>
+
+          <PreviousWorkout
+            previousWorkout={props.previousWorkout[2]}
+          />
 
         <div className="button-group">
           <input className="button" type="submit" value="Workout Complete!" />
