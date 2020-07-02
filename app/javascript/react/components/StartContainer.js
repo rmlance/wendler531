@@ -40,14 +40,15 @@ const StartContainer = props => {
   }
 
   return (
-    <div>
-    <div className="grid-container">
-      <h3>Let's start by collecting some data.</h3>
-      <p>For each of the lifts specified below, enter your estimated one-rep max.</p>
-    </div>
-      <StartForm
-        addNewProgression={addNewProgression}
-      />
+    <div className="grid-container grid-x">
+    <div className="cell medium-3 small-0"></div>
+      <div className="cell medium-6 small-12 progression-container">
+        <h3 className="text-center color-1">Let's start by collecting some data.</h3>
+        <p className="text-center">For each of the lifts specified below, enter your estimated one-rep max.</p>
+        <StartForm
+          addNewProgression={addNewProgression}
+        />
+      </div>
     </div>
   )
 }
