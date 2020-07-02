@@ -47,58 +47,73 @@ const StartForm = props => {
     }
   }
   return (
-    <div className="grid-container">
-    <form onSubmit={handleSubmit}>
-          <ErrorList errors={errors} />
+    <div>
+      <form onSubmit={handleSubmit}>
+        <ErrorList errors={errors} />
 
-          <label className="squat">
-            Back Squat:
-            <input
-              name="squat"
-              id="squat"
-              type="text"
-              onChange={handleInputChange}
-              value={newFormPayload.squat}
-            />
-          </label>
-
-          <label className="bench">
-            Bench Press:
-            <input
-              name="bench"
-              id="bench"
-              type="text"
-              onChange={handleInputChange}
-              value={newFormPayload.bench}
-            />
-          </label>
-
-          <label className="deadlift">
-            Deadlift
-            <input
-              name="deadlift"
-              id="deadlift"
-              type="text"
-              onChange={handleInputChange}
-              value={newFormPayload.deadlift}
-            />
-          </label>
-
-          <label className="press">
-            Overhead Press
-            <input
-              name="press"
-              id="press"
-              type="text"
-              onChange={handleInputChange}
-              value={newFormPayload.press}
-            />
-          </label>
-
-        <div className="button-group">
-          <input className="button" type="submit" value="Build My Workouts" />
+        <div className="form__group field">
+          <input
+            className="form__field"
+            name="squat"
+            id="squat"
+            type="input"
+            onChange={handleInputChange}
+            placeholder="squat"
+            value={newFormPayload.squat}
+            pattern="[0-9]*"
+            inputMode="numeric"
+          />
+          <label htmlFor="squat" className="form__label">Back Squat:</label>
         </div>
-        </form>
+
+
+        <div className="form__group field">
+          <input
+            className="form__field"
+            name="bench"
+            id="bench"
+            type="input"
+            onChange={handleInputChange}
+            placeholder="bench"
+            value={newFormPayload.bench}
+            pattern="[0-9]*"
+            inputMode="numeric"
+          />
+          <label htmlFor="bench" className="form__label">Bench Press:</label>
+        </div>
+
+        <div className="form__group field">
+          <input
+            className="form__field"
+            name="deadlift"
+            id="deadlift"
+            type="input"
+            onChange={handleInputChange}
+            placeholder="deadlift"
+            value={newFormPayload.deadlift}
+            pattern="[0-9]*"
+            inputMode="numeric"
+          />
+          <label htmlFor="deadlift" className="form__label">Deadlift:</label>
+        </div>
+
+        <div className="form__group field">
+          <input
+            className="form__field"
+            name="press"
+            id="press"
+            type="input"
+            onChange={handleInputChange}
+            placeholder="press"
+            value={newFormPayload.press}
+            pattern="[0-9]*"
+            inputMode="numeric"
+          />
+          <label htmlFor="press" className="form__label">Overhead Press:</label>
+        </div>
+
+        <input className="button build-progression-button" type="submit" value="Build My Progression" />
+      </form>
     </div>
   )
 }
