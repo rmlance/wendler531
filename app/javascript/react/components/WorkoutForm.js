@@ -133,9 +133,7 @@ const WorkoutForm = props => {
             visibile={dataVisibility}
           />
 
-        <div className="button-group">
-          <input className="button" type="submit" value="Workout Complete!" />
-        </div>
+          <input className="button build-progression-button" type="submit" value="Workout Complete!" />
         </form>
     </div>
   )
