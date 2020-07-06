@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import WorkoutForm from './WorkoutForm'
+import _ from 'lodash'
 
 const WorkoutContainer = props => {
   const [liftObject, setLiftObject] = useState({})
@@ -12,6 +13,26 @@ const WorkoutContainer = props => {
     reps2: "",
     reps3: ""
   })
+  const [previousWorkout, setPreviousWorkout] = useState([
+    {
+      projected_1rm: "",
+      reps: "You must complete a workout first",
+      updated_at: "",
+      weight: ""
+    },
+    {
+      projected_1rm: "",
+      reps: "You must complete a workout first",
+      updated_at: "",
+      weight: ""
+    },
+    {
+      projected_1rm: "",
+      reps: "You must complete a workout first",
+      updated_at: "",
+      weight: ""
+    }
+  ])
   const [redirect, setRedirect] = useState(false)
   const fetchId = props.match.params.id
 
@@ -32,6 +53,11 @@ const WorkoutContainer = props => {
     .then(parsedWorkoutData => {
       setLiftObject(parsedWorkoutData)
       var todaysWorkout = parsedWorkoutData.workouts.filter(workout => workout.completed == false)[0]
+      let allCompletedWorkouts = parsedWorkoutData.workouts.filter(workout => workout.completed == true)
+      let prevWorkout = allCompletedWorkouts[allCompletedWorkouts.length -1].setts
+      if (!_.isEmpty(prevWorkout)) {
+        setPreviousWorkout(prevWorkout)
+      }
       setEditFormPayload({
         set1: todaysWorkout.setts[0].weight,
         set2: todaysWorkout.setts[1].weight,
@@ -88,13 +114,14 @@ const WorkoutContainer = props => {
   }
 
   return (
-    <div className="grid-container">
+    <div className="grid-container active-workout">
       <h3>{liftObject.name}</h3>
       <WorkoutForm
         editFormPayload={editFormPayload}
         setEditFormPayload={setEditFormPayload}
         completedWorkoutUpdate={completedWorkoutUpdate}
         handleInputChange={handleInputChange}
+        previousWorkout={previousWorkout}
       />
     </div>
   )

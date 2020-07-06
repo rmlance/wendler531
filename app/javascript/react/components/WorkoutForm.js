@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import ErrorList from "./ErrorList"
+import PreviousWorkout from './PreviousWorkout'
 
 const WorkoutForm = props => {
   const [errors, setErrors] = useState({})
+  const [dataVisibility, setDataVisibility] = useState(false)
 
   const validForSubmission = () => {
     let submitErrors = {}
@@ -29,12 +31,20 @@ const WorkoutForm = props => {
     }
   }
 
+  const toggleVisbility = () => {
+    if (!dataVisibility) {
+      return setDataVisibility(true)
+    } else {
+      return setDataVisibility(false)
+    }
+  }
+
   return (
     <div>
     <form onSubmit={handleSubmit}>
           <ErrorList errors={errors} />
 
-          <div className="grid-x callout">
+          <div className="grid-x">
             <div className="set-box medium-4 small-4">Set 1</div>
             <div className="reps-box medium-3 small-3">
               <p>Reps</p>
@@ -53,7 +63,17 @@ const WorkoutForm = props => {
             <div className="set-box medium-2 small-2">Completed</div>
           </div>
 
-          <div className="grid-x callout">
+          <div className="toggle-workout-data"onClick={toggleVisbility}>
+            Show Previous Workout Data:
+          </div>
+
+          <PreviousWorkout
+            previousWorkout={props.previousWorkout[0]}
+            visibile={dataVisibility}
+          />
+
+
+          <div className="grid-x">
             <div className="set-box medium-4 small-4">Set 2</div>
             <div className="reps-box medium-3 small-3">
               <p>Reps</p>
@@ -72,7 +92,16 @@ const WorkoutForm = props => {
             <div className="set-box medium-2 small-2">Completed</div>
           </div>
 
-          <div className="grid-x callout">
+          <div className="toggle-workout-data" onClick={toggleVisbility}>
+            Show Previous Workout Data:
+          </div>
+
+          <PreviousWorkout
+            previousWorkout={props.previousWorkout[1]}
+            visibile={dataVisibility}
+          />
+
+          <div className="grid-x">
             <div className="set-box medium-4 small-4">Set 3</div>
             <label className="weight-box medium-3 small-3">
               Reps
@@ -97,6 +126,15 @@ const WorkoutForm = props => {
             </label>
             <div className="set-box medium-2 small-2">Completed</div>
           </div>
+
+          <div className="toggle-workout-data" onClick={toggleVisbility}>
+            Show Previous Workout Data:
+          </div>
+
+          <PreviousWorkout
+            previousWorkout={props.previousWorkout[2]}
+            visibile={dataVisibility}
+          />
 
         <div className="button-group">
           <input className="button" type="submit" value="Workout Complete!" />
