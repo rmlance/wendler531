@@ -6,22 +6,30 @@ const PreviousWorkout = props => {
   let proj_1rm = props.previousWorkout.projected_1rm
   let date = props.previousWorkout.updated_at.slice(0, 10)
 
-  return (
-    <div className="grid-x">
-      <div className="set-box medium-4 small-4">Date
-      <p>{date}</p>
+  if (props.visibile == 0) {
+    return (
+      <div>
       </div>
-      <div className="reps-box medium-3 small-3">Reps
+    )
+  } else {
+    return (
+      <div className="grid-x">
+      <div className="set-box medium-4 small-4">
+      <p>Date: {date}</p>
+      </div>
+      <div className="reps-box medium-3 small-3">
       <p>{reps}</p>
       </div>
-      <div className="weight-box medium-3 small-3">Weight
+      <div className="weight-box medium-3 small-3">
       <p>{weight}</p>
       </div>
       <div className="weight-box medium-2 small-2">Projected 1RM
       <p>{proj_1rm}</p>
       </div>
-    </div>
-  )
+      </div>
+    )
+  }
+
 }
 
 export default PreviousWorkout
