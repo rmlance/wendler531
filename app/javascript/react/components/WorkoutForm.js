@@ -44,13 +44,13 @@ const WorkoutForm = props => {
     <form onSubmit={handleSubmit}>
           <ErrorList errors={errors} />
 
-          <div className="grid-x">
+          <div className="grid-x set-container">
             <div className="set-box medium-4 small-4">Set 1</div>
-            <div className="reps-box medium-3 small-3">
-              <p>Reps</p>
+            <div className="reps-box medium-4 small-4">
+              <p className="reps-title">Reps</p>
               {props.editFormPayload.reps1}
             </div>
-            <label className="weight-box medium-3 small-3">
+            <label className="weight-box medium-4 small-4">
               Weight
               <input
                 name="set1"
@@ -60,7 +60,6 @@ const WorkoutForm = props => {
                 value={props.editFormPayload.set1}
               />
             </label>
-            <div className="set-box medium-2 small-2">Completed</div>
           </div>
 
           <div className="toggle-workout-data"onClick={toggleVisbility}>
@@ -73,13 +72,13 @@ const WorkoutForm = props => {
           />
 
 
-          <div className="grid-x">
+          <div className="grid-x set-container">
             <div className="set-box medium-4 small-4">Set 2</div>
-            <div className="reps-box medium-3 small-3">
-              <p>Reps</p>
+            <div className="reps-box medium-4 small-4">
+              <p className="reps-title">Reps</p>
               {props.editFormPayload.reps2}
             </div>
-            <label className="weight-box medium-3 small-3">
+            <label className="weight-box medium-4 small-4">
               Weight
                 <input
                 name="set2"
@@ -89,7 +88,6 @@ const WorkoutForm = props => {
                 value={props.editFormPayload.set2}
               />
             </label>
-            <div className="set-box medium-2 small-2">Completed</div>
           </div>
 
           <div className="toggle-workout-data" onClick={toggleVisbility}>
@@ -101,9 +99,9 @@ const WorkoutForm = props => {
             visibile={dataVisibility}
           />
 
-          <div className="grid-x">
+          <div className="grid-x set-container">
             <div className="set-box medium-4 small-4">Set 3</div>
-            <label className="weight-box medium-3 small-3">
+            <label className="weight-box medium-4 small-4">
               Reps
               <input
                 name="reps3"
@@ -114,7 +112,7 @@ const WorkoutForm = props => {
               />
             </label>
 
-            <label className="weight-box medium-3 small-3">
+            <label className="weight-box medium-4 small-4">
               Weight
               <input
                 name="set3"
@@ -124,7 +122,6 @@ const WorkoutForm = props => {
                 value={props.editFormPayload.set3}
               />
             </label>
-            <div className="set-box medium-2 small-2">Completed</div>
           </div>
 
           <div className="toggle-workout-data" onClick={toggleVisbility}>
@@ -136,9 +133,7 @@ const WorkoutForm = props => {
             visibile={dataVisibility}
           />
 
-        <div className="button-group">
-          <input className="button" type="submit" value="Workout Complete!" />
-        </div>
+          <input className="button build-progression-button" type="submit" value="Workout Complete!" />
         </form>
     </div>
   )

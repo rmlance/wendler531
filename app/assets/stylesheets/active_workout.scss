@@ -1,9 +1,70 @@
+$primary: #F55D3E;
+$secondary: #FFFF00;
+$white: #fff;
+$light-blue: #A2CDE2;
+
+.active-workout-title {
+  font-size: 50px;
+  font-weight: bold;
+  margin-left: 10%;
+  color: #F55D3E;
+  margin-bottom: 0px;
+}
+
 .active-workout {
-  margin: 10px 10px 10px 10px;
+  margin: 20px 10px 20px 10px;
   padding: 50px 20px 20px 50px;
-  background-color: #3D95BF;
+  background-color: white;
 }
 
 .toggle-workout-data {
-  background-color: #f55d3e;
+  margin: 0% 10% 0% 10%;
+}
+
+.set-container {
+  border-top: 1px gray solid;
+  margin: 0% 10% 0% 10%;
+}
+.prev-set-container {
+  margin: 0% 10% 0% 10%;
+}
+
+.set-box {
+  text-align: center;
+  font-size: 40px;
+  margin-top: 15px;
+}
+.prev-set-box {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.reps-box {
+  text-align: center;
+  font-size: 40px;
+  margin-top: 0px;
+}
+
+.reps-title {
+  text-align: center;
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+
+.weight-box {
+  padding: 5px 15px 5px 15px;
+}
+
+.workout-complete-button {
+  background-color: $primary;
+  width: 50%;
+  height: 40px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 60px;
+  transform: translate(50%);
 }
