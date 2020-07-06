@@ -14,13 +14,13 @@ const PreviousWorkout = props => {
   } else {
     return (
       <div className="grid-x">
-      <div className="set-box medium-4 small-4">
+      <div className="set-box medium-2 small-4">
       <p>Date: {date}</p>
       </div>
-      <div className="reps-box medium-3 small-3">
+      <div className="reps-box medium-1 small-3">
       <p>{reps}</p>
       </div>
-      <div className="weight-box medium-3 small-3">
+      <div className="weight-box medium-1 small-3">
       <p>{weight}</p>
       </div>
       <div className="weight-box medium-2 small-2">Projected 1RM
