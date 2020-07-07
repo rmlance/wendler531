@@ -97,7 +97,17 @@ const WorkoutContainer = props => {
     })
     .then(response => response.json())
     .then(parsedEditResponse => {
-      setRedirect(true)
+      let completedLength = 0
+      parsedEditResponse.workouts.forEach((workout) => {
+        if (workout.completed) {
+          completedLength ++
+        }
+      })
+      if (parsedEditResponse.workouts.length == completedLength) {
+        setRedirect("End of Cycle")
+      } else {
+        setRedirect(true)
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
@@ -109,7 +119,9 @@ const WorkoutContainer = props => {
     })
   }
 
-  if (redirect) {
+  if (redirect == "End of Cycle") {
+    return <Redirect to={`/endOfCycle/${fetchId}`} />
+  } else if (redirect) {
     return <Redirect to={`/`} />
   }
 
