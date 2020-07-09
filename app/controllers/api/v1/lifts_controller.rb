@@ -12,11 +12,16 @@ class Api::V1::LiftsController < ApplicationController
   end
 
   def create
-    new_weight_array = [params["squat"], params["bench"], params["deadlift"], params["press"]]
-    if current_user.lifts.all.empty?
-      ProgressionBuilder.new(new_weight_array, current_user).build_progression
+    if params["new_max"]
+      # Write your new logic for creating a single progression here
+      binding.pry
     else
-      ProgressionBuilder.new(new_weight_array, current_user).build_workouts
+      new_weight_array = [params["squat"], params["bench"], params["deadlift"], params["press"]]
+      if current_user.lifts.all.empty?
+        ProgressionBuilder.new(new_weight_array, current_user).build_progression
+      else
+        ProgressionBuilder.new(new_weight_array, current_user).build_workouts
+      end
     end
     lifts = current_user.lifts.all
     render json: lifts

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Chart } from "react-google-charts";
+import BuildNextCycle from './BuildNextCycle'
 
 const EndOfCycleContainer = props => {
   const fetchId = props.match.params.id
@@ -66,7 +67,7 @@ const EndOfCycleContainer = props => {
     }
   };
 
-  alet loader = <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  let loader = <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
   return (
     <div className="grid-container">
@@ -83,8 +84,8 @@ const EndOfCycleContainer = props => {
             legendToggle
           />
         </div>
-        <div className="medium-6 small-12 plot-display">
-          <h5>How to build your next progression:</h5>
+        <div className="medium-6 small-12 plot-display-2">
+          <BuildNextCycle />
         </div>
       </div>
       <div className="plot-display">
