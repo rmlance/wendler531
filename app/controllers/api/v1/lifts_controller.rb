@@ -13,8 +13,9 @@ class Api::V1::LiftsController < ApplicationController
 
   def create
     if params["new_max"]
-      # Write your new logic for creating a single progression here
       binding.pry
+      let new_max = params["new_max"]
+      SingleBuild.new(new_max, current_user)
     else
       new_weight_array = [params["squat"], params["bench"], params["deadlift"], params["press"]]
       if current_user.lifts.all.empty?
