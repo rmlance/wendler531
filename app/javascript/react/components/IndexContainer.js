@@ -84,7 +84,7 @@ const IndexContainer = props => {
   })
 
   const options = {
-    title: "Projected One-Rep Max Progrssion",
+    title: "Projected One-Rep Max Progression",
     legend: { position: "bottom" },
     chartArea: {
       left:40,

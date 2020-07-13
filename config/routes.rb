@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'homes#index'
   get '/start', to: 'homes#index'
   get '/lifts/:id', to: 'homes#index'
+  get '/endOfCycle/:id', to: 'homes#index'
 
   namespace :api do
     namespace :v1 do
