@@ -65,18 +65,18 @@ const BuildNextCycle = props => {
 
   return (
     <div className="grid-container">
-      <p>In order to continue your progression, you must first...</p>
+      <p>In order to continue recording workouts, complete the following form:</p>
       <h3 className="">Build Your Next Cycle</h3>
       <div className="grid-x">
         <div className="medium-6 small-6">
-          <h1>225</h1>
+          <h1>{props.proj1rm}</h1>
         </div>
         <div className="medium-6 small-6">
         <form onSubmit={handleSubmit}>
               <ErrorList errors={errors} />
 
                 <label className="weight-box medium-4 small-4">
-                  Weight
+                  Enter a new one-rep max.
                   <input
                     name="new_max"
                     id="new_max"
@@ -86,7 +86,7 @@ const BuildNextCycle = props => {
                   />
                 </label>
 
-              <input className="button build-progression-button" type="submit" value="Workout Complete!" />
+              <input className="button build-progression-button" type="submit" value="Submit" />
             </form>
         </div>
       </div>

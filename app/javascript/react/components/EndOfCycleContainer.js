@@ -87,6 +87,7 @@ const EndOfCycleContainer = props => {
         <div className="medium-6 small-12 plot-display-2">
           <BuildNextCycle
             liftName={workoutData.name}
+            proj1rm={workoutData.initial_1rm}
           />
         </div>
       </div>
