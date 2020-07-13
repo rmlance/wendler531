@@ -4,7 +4,8 @@ import ErrorList from "./ErrorList"
 
 const BuildNextCycle = props => {
   const [editFormPayload, setEditFormPayload] = useState({
-    new_max: ""
+    new_max: "",
+    lift_name: props.liftName
   })
   const [errors, setErrors] = useState({})
 
@@ -31,7 +32,8 @@ const BuildNextCycle = props => {
   const handleInputChange = event => {
     setEditFormPayload({
       ...editFormPayload,
-      [event.currentTarget.name]: event.currentTarget.value
+      [event.currentTarget.name]: event.currentTarget.value,
+      lift_name: props.liftName
     })
   }
 

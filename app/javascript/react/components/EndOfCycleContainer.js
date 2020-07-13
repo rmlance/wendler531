@@ -85,7 +85,9 @@ const EndOfCycleContainer = props => {
           />
         </div>
         <div className="medium-6 small-12 plot-display-2">
-          <BuildNextCycle />
+          <BuildNextCycle
+            liftName={workoutData.name}
+          />
         </div>
       </div>
       <div className="plot-display">

@@ -13,9 +13,9 @@ class Api::V1::LiftsController < ApplicationController
 
   def create
     if params["new_max"]
-      binding.pry
-      let new_max = params["new_max"]
-      SingleBuild.new(new_max, current_user)
+      new_max = params["new_max"]
+      lift_name = params["lift_name"]
+      SingleBuild.new(new_max, lift_name, current_user).add_sets
     else
       new_weight_array = [params["squat"], params["bench"], params["deadlift"], params["press"]]
       if current_user.lifts.all.empty?
