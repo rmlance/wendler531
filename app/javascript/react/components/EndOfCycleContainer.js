@@ -71,9 +71,9 @@ const EndOfCycleContainer = props => {
 
   return (
     <div className="grid-container">
-      <h3 className="active-workout-title text-center">Congrats on completing your {workoutData.name} cycle!</h3>
+      <h3 className="eoc-congrats-title text-center">Congrats on completing your {workoutData.name} cycle!</h3>
       <div className="grid-x">
-        <div className="medium-6 small-12 plot-display">
+        <div className="medium-6 small-12 eoc-plot-display">
           <Chart
             chartType="LineChart"
             loader={loader}
@@ -84,15 +84,15 @@ const EndOfCycleContainer = props => {
             legendToggle
           />
         </div>
-        <div className="medium-6 small-12 plot-display-2">
+        <div className="medium-6 small-12 eoc-plot-display-2">
           <BuildNextCycle
             liftName={workoutData.name}
             proj1rm={workoutData.initial_1rm}
           />
         </div>
       </div>
-      <div className="plot-display">
-        This section will contain all of your workout data.
+      <div className="eoc-plot-display-2">
+        <p className="eoc-text">Feature coming soon! This section will display all of your workout data.</p>
       </div>
     </div>
   )
