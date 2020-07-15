@@ -45,7 +45,7 @@ const WorkoutContainer = props => {
         return response
       }else {
         let errorMessage = `${response.status} (${response.statusText})`
-        error = new Error(errorMessage)
+        let error = new Error(errorMessage)
         throw(error)
       }
     })
@@ -67,7 +67,10 @@ const WorkoutContainer = props => {
         reps3: todaysWorkout.setts[2].reps
       })
     })
-    .catch(error => console.error(`Error in fetch: $[errorMessage]`))
+    .catch(error => {
+      setRedirect("End of Cycle")
+      console.error(`Error in fetch: ${errorMessage}`)
+    })
   }, [])
 
   const completedWorkoutUpdate = (editFormPayload) =>{
@@ -109,7 +112,9 @@ const WorkoutContainer = props => {
         setRedirect(true)
       }
     })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
+    .catch(error => {
+      console.error(`Error in fetch: ${error.message}`)
+    })
   }
 
   const handleInputChange = event => {
