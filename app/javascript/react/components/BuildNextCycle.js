@@ -8,6 +8,7 @@ const BuildNextCycle = props => {
     lift_name: props.liftName
   })
   const [errors, setErrors] = useState({})
+  const [redirect, setRedirect] = useState(false)
 
   const validForSubmission = () => {
     let submitErrors = {}
@@ -58,36 +59,47 @@ const BuildNextCycle = props => {
     })
     .then(response => response.json())
     .then(parsedProgression => {
-      // setRedirect(true)
+      setRedirect(true)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
+  let renderMe =
+  <form onSubmit={handleSubmit}>
+    <h3 className="">Build Your Next Cycle</h3>
+    <ErrorList errors={errors} />
+
+    <label className="weight-box medium-4 small-4">
+    Enter a new one-rep max.
+    <input
+      name="new_max"
+      id="new_max"
+      type="text"
+      onChange={handleInputChange}
+      value={editFormPayload.value}
+    />
+    </label>
+
+    <input className="button build-progression-button" type="submit" value="Submit" />
+  </form>
+
+  if (redirect) {
+    renderMe =
+    <h3>
+    Your information has been recorded. You're all set!
+    </h3>
   }
 
   return (
     <div className="grid-container">
       <p>In order to continue recording workouts, complete the following form:</p>
-      <h3 className="">Build Your Next Cycle</h3>
       <div className="grid-x">
         <div className="medium-6 small-6">
+        <p>Here's the one-rep max you used for your recently completed cycle:</p>
           <h1>{props.proj1rm}</h1>
         </div>
         <div className="medium-6 small-6">
-        <form onSubmit={handleSubmit}>
-              <ErrorList errors={errors} />
-
-                <label className="weight-box medium-4 small-4">
-                  Enter a new one-rep max.
-                  <input
-                    name="new_max"
-                    id="new_max"
-                    type="text"
-                    onChange={handleInputChange}
-                    value={editFormPayload.value}
-                  />
-                </label>
-
-              <input className="button build-progression-button" type="submit" value="Submit" />
-            </form>
+        {renderMe}
         </div>
       </div>
     </div>
