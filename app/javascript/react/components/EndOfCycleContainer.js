@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Chart } from "react-google-charts";
 import BuildNextCycle from './BuildNextCycle'
+import EOCRecords from './EOCRecords'
 
 const EndOfCycleContainer = props => {
   const fetchId = props.match.params.id
@@ -49,6 +50,16 @@ const EndOfCycleContainer = props => {
     })
   })
 
+  const records = workoutData.workouts.map((workout) => {
+    return (
+      <EOCRecords
+        key={workout.updated_at}
+        workouts={workout}
+        sets={workout.setts}
+      />
+    )
+  })
+
   const options = {
     title: `${workoutData.name} Projected One-Rep Max Progression By Set`,
     legend: { position: "bottom" },
@@ -92,7 +103,7 @@ const EndOfCycleContainer = props => {
         </div>
       </div>
       <div className="eoc-plot-display-2">
-        <p className="eoc-text">Feature coming soon! This section will display all of your workout data.</p>
+        {records}
       </div>
     </div>
   )
